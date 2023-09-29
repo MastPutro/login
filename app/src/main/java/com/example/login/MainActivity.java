@@ -25,20 +25,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         TextView username =(TextView) findViewById(R.id.username);
         TextView password =(TextView) findViewById(R.id.password);
-
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
-
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         Button loginButton = findViewById(R.id.loginbtn);
         TextView registerTextView = findViewById(R.id.register);
-
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

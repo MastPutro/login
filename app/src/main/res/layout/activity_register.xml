@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".register">
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -15,14 +14,12 @@
         android:textSize="40dp"
         android:textColor="#fff"
         android:background="@color/design_default_color_primary"/>
-
     <EditText
         android:id="@+id/username_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="Username" />
-
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="match_parent"
@@ -30,14 +27,12 @@
         android:inputType="textPassword"
         android:layout_marginTop="10dp"
         android:hint="Password" />
-
     <Button
         android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Register account" />
-
     <Button
         android:id="@+id/backlogin"
         android:layout_marginTop="10dp"
