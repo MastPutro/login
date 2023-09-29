@@ -5,16 +5,21 @@ import static com.example.login.R.id.github;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
+    private SharedPreferences sharedPreferences;
+    private EditText usernameEditText, passwordEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,43 +32,43 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
 
-        //admin and admin
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
+        Button loginButton = findViewById(R.id.loginbtn);
+        TextView registerTextView = findViewById(R.id.register);
 
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
-                    //correct
-                    Toast.makeText(MainActivity.this,"LOGIN SUCCESSFUL",Toast.LENGTH_SHORT).show();
-                    setContentView(R.layout.dashboard);
-                    Button github = findViewById(R.id.github);
-                    github.setOnClickListener(new View.OnClickListener(){
-
-                        @Override
-                        public void onClick(View view) {
-                            String url = "https://github.com/MastPutro";
-
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                            startActivity(intent);
-                        }
-                    });
-
-                    Button call = findViewById(R.id.call);
-                    call.setOnClickListener(new View.OnClickListener(){
-
-                        @Override
-                        public void onClick(View view) {
-
-                            Intent intent = new Intent(Intent.ACTION_DIAL);
-                            startActivity(intent);
-                        }
-                    });
-
-                }else
-                    //incorrect
-                    Toast.makeText(MainActivity.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
+                loginUser();
             }
         });
 
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, register.class));
+            }
+        });
+
+    }
+    private void loginUser() {
+        String username = usernameEditText.getText().toString().trim();
+        String password = passwordEditText.getText().toString().trim();
+
+        // Retrieve saved credentials from SharedPreferences
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+
+        if (username.equals(savedUsername) && password.equals(savedPassword)) {
+            Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, Dashboard.class);
+            startActivity(intent);
+            // Add code to navigate to the next activity upon successful login
+        } else {
+            Toast.makeText(this, "Invalid credentials. Try again.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
