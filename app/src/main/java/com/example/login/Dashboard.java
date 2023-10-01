@@ -16,6 +16,8 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         Button github = findViewById(R.id.github);
         Button listac = findViewById(R.id.listaccount);
+        Button fraglay = findViewById(R.id.fraglay);
+        Button call = findViewById(R.id.call);
 
         listac.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,26 +26,33 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-                    github.setOnClickListener(new View.OnClickListener(){
+        github.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String url = "https://github.com/MastPutro";
 
-                        @Override
-                        public void onClick(View view) {
-                            String url = "https://github.com/MastPutro";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
 
-                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                            startActivity(intent);
-                        }
-                    });
 
-                    Button call = findViewById(R.id.call);
-                    call.setOnClickListener(new View.OnClickListener(){
+        call.setOnClickListener(new View.OnClickListener(){
 
-                        @Override
-                        public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 
-                            Intent intent = new Intent(Intent.ACTION_DIAL);
-                            startActivity(intent);
-                        }
-                    });
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                startActivity(intent);
+            }
+        });
+
+        fraglay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Dashboard.this, fragmentlay.class);
+                startActivity(intent);
+            }
+        });
     }
 }

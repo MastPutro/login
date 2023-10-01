@@ -32,7 +32,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/fragment1"
+        android:id="@+id/fraglay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
